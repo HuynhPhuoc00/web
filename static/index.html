@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IoT Light Control</title>
+</head>
+<body>
+    <h1>Bóng đèn 01</h1>
+    <label>
+        <input type="checkbox" id="example_01"> Bật đèn
+    </label>
+    <br>
+    <img id="d01_img" src="./img/dentat.png" alt="Trạng thái đèn" width="200">
+    <script>
+    var btn1 = document.getElementById("example_01");
+    btn1.onclick = function(){
+      const isChecked = document.getElementById("example_01").checked;
+      const img = document.getElementById("d01_img");
+      const state = isChecked ? "ON" : "OFF";
+      
+      img.src = isChecked ? "./img/densang.png" : "./img/dentat.png";
+
+      fetch("http://localhost:5000/bulb", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ "BULB_01": state })
+      });
+    }
+    </script>
+</body>
+</html>
