@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Điều khiển đèn IoT</title>
+    <title>IoT System</title>
 </head>
 <body>
-    <h1>Đèn phòng khách</h1>
+    <!-- LIVING ROON -->
+    <h1>Living Room</h1>
+
+    <!-- BULB_01 -->
     <label>
-        <input type="checkbox" id="example_01"> Bật/Tắt đèn
+        <input type="checkbox" id="BULB_01"> Bật/Tắt đèn
     </label>
     <br><br>
-    <img id="d01_img" src="./img/dentat.png" width="200px">
+    <img id="BULB_01_img" src="./img/dentat.png" width="200px">
 
     <script>
-    const btn1 = document.getElementById("example_01");
-    btn1.onclick = function(){
-        const isChecked = btn1.checked;
-        document.getElementById("d01_img").src = isChecked ? "./img/densang.png" : "./img/dentat.png";
+    const btn_BULB_01 = document.getElementById("BULB_01");
+    btn_BULB_01.onclick = function(){
+        const isChecked = btn_BULB_01.checked;
+        document.getElementById("BULB_01_img").src = isChecked ? "./img/densang.png" : "./img/dentat.png";
         fetch("/bulb", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -30,9 +33,39 @@
             .then(data => {
                 const isOn = data.BULB_01 === "ON";
                 btn1.checked = isOn;
-                document.getElementById("d01_img").src = isOn ? "./img/densang.png" : "./img/dentat.png";
+                document.getElementById("BULB_01_img").src = isOn ? "./img/densang.png" : "./img/dentat.png";
             });
     };
+    </script>
+
+      <!-- FAN_01 -->
+      <label>
+          <input type="checkbox" id="FAN_01"> Bật/Tắt đèn
+      </label>
+      <br><br>
+      <img id="FAN_01_img" src="./img/quatdungim.png" width="200px">
+  
+      <script>
+      const btn_FAN_01 = document.getElementById("FAN_01");
+      btn_FAN_01.onclick = function(){
+          const isChecked = btn_FAN_01.checked;
+          document.getElementById("FAN_01_img").src = isChecked ? "./img/quatchay.png" : "./img/quatdungim.png";
+          fetch("/bulb", {
+              method: "POST",
+              headers: {"Content-Type": "application/json"},
+              body: JSON.stringify({ "FAN_01": isChecked ? "ON" : "OFF" })
+          });
+      };
+  
+      window.onload = () => {
+          fetch("/bulb")
+              .then(res => res.json())
+              .then(data => {
+                  const isOn = data.FAN_01 === "ON";
+                  btn1.checked = isOn;
+                  document.getElementById("FAN_01_img").src = isOn ? "./img/quatchay.png" : "./img/quatdungim.png";
+              });
+      };
     </script>
 </body>
 </html>
