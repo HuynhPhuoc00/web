@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import control
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -46,7 +45,6 @@ def control_device(device_id):
         data = request.get_json()
         if device_id in data:
             device_states[device_id] = data[device_id]
-            control.update_device_state(device_id, data[device_id])
             return jsonify({"status": "ok", device_id: device_states[device_id]})
         else:
             return jsonify({"error": f"Missing {device_id} key"}), 400
