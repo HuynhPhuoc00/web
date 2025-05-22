@@ -30,30 +30,30 @@ btn2.onclick = function(){
 var btn3 = document.getElementById("example_03");
 btn3.onclick = function(){
   if (document.getElementById("example_03").checked){
-    document.getElementById("d03_img").src = "./img/tivion.png"  
+    document.getElementById("d03_img").src = "./img/kitchenon.png"  
     firebase.database().ref("/TT_IoT").update({
       "BULB_01": "ON"
     })
   } else {
-    document.getElementById("d03_img").src = "./img/tivioff.png"
+    document.getElementById("d03_img").src = "./img/kitchenoff.png"
     firebase.database().ref("/TT_IoT").update({
     })
   }
 }
 
-// var btn4 = document.getElementById("example_04");
-// btn4.onclick = function(){
-//   if (document.getElementById("example_04").checked){
-//     document.getElementById("d04_img").src = "./img/unlocked.png"  
-//     firebase.database().ref("/TT_IoT").update({
-//       "BULB_01": "ON"
-//     })
-//   } else {
-//     document.getElementById("d04_img").src = "./img/lock.png"
-//     firebase.database().ref("/TT_IoT").update({
-//     })
-//   }
-// }
+var btn4 = document.getElementById("example_04");
+btn4.onclick = function(){
+  if (document.getElementById("example_04").checked){
+    document.getElementById("d04_img").src = "./img/ovenon.png"  
+    firebase.database().ref("/TT_IoT").update({
+      "BULB_01": "ON"
+    })
+  } else {
+    document.getElementById("d04_img").src = "./img/ovenoff.png"
+    firebase.database().ref("/TT_IoT").update({
+    })
+  }
+}
 
 var btn5 = document.getElementById("example_05");
 btn5.onclick = function(){
@@ -68,35 +68,5 @@ btn5.onclick = function(){
     })
   }
 }
-
-var btn7 = document.getElementById("example_07");
-btn7.onclick = function(){
-  if (document.getElementById("example_07").checked){
-    document.getElementById("d07_img").src = "./img/kitchenon.png"  
-    firebase.database().ref("/TT_IoT").update({
-      "BULB_01": "ON"
-    })
-  } else {
-    document.getElementById("d07_img").src = "./img/kitchenoff.png"
-    firebase.database().ref("/TT_IoT").update({
-    })
-  }
-}
-
-var btn8 = document.getElementById("example_04");
-btn8.onclick = function(){
-  if (document.getElementById("example_04").checked){
-    document.getElementById("d08_img").src = "./img/ovenon.png"
-    firebase.database().ref("/TT_IoT").update({
-      "BULB_01": "ON"
-    })
-  } else {
-    document.getElementById("d08_img").src = "./img/ovenoff.png"
-    firebase.database().ref("/TT_IoT").update({
-    })
-  }
-}
-
-
 
 
