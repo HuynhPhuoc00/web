@@ -5,13 +5,31 @@ app = Flask(__name__, static_url_path='', static_folder='static')
 
 # Trạng thái tất cả thiết bị
 device_states = {
+    # For living room
     "BULB_01"   : "OFF",
     "FAN_01"    : "OFF",
     "TV_01"     : "OFF",
     "LOCK_01"   : "OFF",
     "AIR_01"    : "OFF",
-    "SPEAKER_01": "OFF"
+    "SPEAKER_01": "OFF",
+
+    # For bedroom
+    "BULB_02"   : "OFF",
+    "FAN_02"    : "OFF",
+    "TV_02"     : "OFF",
+    "LOCK_02"   : "OFF",
+    "AIR_02"    : "OFF",
+    "REM_02"    : "OFF",
+
+    # For kitchen
+    "BULB_03"   : "OFF",    
+    "FAN_03"    : "OFF",
+    "KITCHEN_03": "OFF",
+    "OVEN_03"   : "OFF",
+    "AIR_03"    : "OFF",
+    "FRIDGE_03" : "OFF",
 }
+
 
 @app.route("/")
 def root():

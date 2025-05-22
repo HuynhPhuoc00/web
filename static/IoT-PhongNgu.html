@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link href="/path/to/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="component-custom-switch.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="dropdown.js"> -->
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Smart Home </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Trang chủ</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./IoT-PhongKhach.html">Phòng Khách </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="./IoT-PhongBep.html">Phòng Bếp </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./IoT-PhongNgu.html">Phòng Ngủ <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="background-image3 col-4">
+        </div>
+        <div class="col-8"><div class="container">    
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="device col-md-3 m-4  radius device2 mb-2">
+                        <img id="BULB_02_img" src="./img/dentat.png" alt="img" style="width:100%">
+                        <p></p>
+                        <div>
+                            <div class="custom-switch custom-switch-label pl-0">
+                                <input class="custom-switch-input" id="BULB_02" type="checkbox">
+                                <label class="custom-switch-btn" for="BULB_02"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="device col-md-3 m-4 radius device1 mb-2">
+                        <img id="FAN_02_img" src="./img/quatdungim.png" alt="img" style="width:100%">
+                        <p></p>
+                        <div>
+                            <div class="custom-switch custom-switch-label pl-0">
+                                <input class="custom-switch-input" id="FAN_02" type="checkbox">
+                                <label class="custom-switch-btn" for="FAN_02"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="device col-md-3 m-4 radius device3 mb-2">
+                        <img id="TV_02_img" src="./img/tivioff.png" alt="img" style="width:100%">
+                        <p></p>
+                        <div>
+                            <div class="custom-switch custom-switch-label pl-0">
+                                <input class="custom-switch-input" id="TV_02" type="checkbox">
+                                <label class="custom-switch-btn" for="TV_02"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="device col-md-3 m-4 radius device4 mb-2">
+                        <img id="LOCK_02_img" src="./img/lock.png" alt="img" style="width:100%">
+                        <p></p>
+                        <div>
+                            <div class="custom-switch custom-switch-label pl-0">
+                                <input class="custom-switch-input" id="LOCK_02" type="checkbox">
+                                <label class="custom-switch-btn" for="LOCK_02"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="device col-md-3 m-4 radius device5 mb-2">
+                        <img id="AIR_02_img" src="./img/airstop.png" alt="img" style="width:100%">
+                        <div>
+                            <div class="custom-switch custom-switch-label pl-0">
+                                <input class="custom-switch-input" id="AIR_02" type="checkbox">
+                                <label class="custom-switch-btn" for="AIR_02"></label>
+                            </div>
+                        </div>
+                        <p><b>Nhiệt độ: <span id="demo_1"></span> &deg;C</b> </p>
+                        <input type="range" min="20" max="40" value="50" class="slider_1" id="myRange_1">
+                    </div>
+                    
+                    <div class="device col-md-3 m-4 radius device6 mb-2">
+                        <img id="REM_02_img" src="./img/blinds.png" alt="img" style="width:100%">
+                        <p><b>Đóng mở rèm: <span id="demo_1"></span></b> </p>
+                        <input type="range" min="-20" max="10" value="50" class="slider_1" id="myRange_1">
+                    </div>
+                </div>
+            </div>
+        </div></div>
+    </div>
+
+</div>
+
+    <!-- BULB_02 -->
+    <script>
+    const btn_BULB_02 = document.getElementById("BULB_02");
+    btn_BULB_02.onclick = function(){
+        const isChecked = btn_BULB_02.checked;
+        document.getElementById("BULB_02_img").src = isChecked ? "./img/densang.png" : "./img/dentat.png";
+        fetch("/device/BULB_02", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "BULB_02": isChecked ? "ON" : "OFF" }) 
+        });
+    };
+
+    window.onload = () => {
+        fetch("/device/BULB_02")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.BULB_02 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("BULB_02_img").src = isOn ? "./img/densang.png" : "./img/dentat.png";
+        });
+    };
+    </script>
+
+    <!-- FAN_02 -->
+    <script>
+    const btn_FAN_02 = document.getElementById("FAN_02");
+    btn_FAN_02.onclick = function(){
+    const isChecked = btn_FAN_02.checked;
+    document.getElementById("FAN_02_img").src = isChecked ? "./img/quatchay.png" : "./img/quatdungim.png";
+    fetch("/device/FAN_02", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ "FAN_02": isChecked ? "ON" : "OFF" }) 
+    });
+    };
+
+    window.onload = () => {
+    fetch("/device/FAN_02")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.FAN_02 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("FAN_02_img").src = isOn ? "./img/quatchay.png" : "./img/quatdungim.png";
+    });
+    };
+    </script>
+
+    <!-- TV_02 -->
+    <script>
+    const btn_TV_02 = document.getElementById("TV_02"); 
+    btn_TV_02.onclick = function(){
+        const isChecked = btn_TV_02.checked;
+        document.getElementById("TV_02_img").src = isChecked ? "./img/tivion.png" : "./img/tivioff.png";
+        fetch("/device/TV_02", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "TV_02": isChecked ? "ON" : "OFF" }) 
+        });
+    };
+    window.onload = () => {
+        fetch("/device/TV_02")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.TV_02 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("TV_02_img").src = isOn ? "./img/tivion.png" : "./img/tivioff.png";
+        });
+    };
+    </script>
+
+    <!-- LOCK_02 -->  
+    <script>      
+    const btn_LOCK_02 = document.getElementById("LOCK_02");
+    btn_LOCK_02.onclick = function(){
+        const isChecked = btn_LOCK_02.checked;
+        document.getElementById("LOCK_02_img").src = isChecked ? "./img/unlocked.png" : "./img/lock.png";
+        fetch("/device/LOCK_02", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "LOCK_02": isChecked ? "ON" : "OFF" }) 
+        });
+    };
+    window.onload = () => {
+        fetch("/device/LOCK_02")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.LOCK_02 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("LOCK_02_img").src = isOn ? "./img/unlocked.png" : "./img/lock.png";
+        });
+    };
+    </script>
+
+    <!-- AIR_02 -->
+    <script>
+    const btn_AIR_02 = document.getElementById("AIR_02");
+    btn_AIR_02.onclick = function(){
+        const isChecked = btn_AIR_02.checked;
+        document.getElementById("AIR_02_img").src = isChecked ? "./img/airrun.png" : "./img/airstop.png";
+        fetch("/device/AIR_02", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "AIR_02": isChecked ? "ON" : "OFF"}) 
+        });
+    };
+    window.onload = () => {
+        fetch("/device/AIR_02")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.AIR_02 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("AIR_02_img").src = isOn ? "./img/airrun.png" : "./img/airstop.png";
+        });
+    };
+    </script>
+
+    <!-- REM_02 -->
+    <script>
+    const btn_REM_02 = document.getElementById("REM_02");
+    btn_REM_02.onclick = function(){
+        const isChecked = btn_REM_02.checked;
+        document.getElementById("REM_02_img").src = isChecked ? "./img/speakeron.png" : "./img/speakers.png";
+        fetch("/device/REM_02", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "REM_02": isChecked ? "ON" : "OFF" }) 
+        });
+    };
+    window.onload = () => {
+        fetch("/device/REM_02")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.REM_02 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("REM_02_img").src = isOn ? "./img/speakeron.png" : "./img/speakers.png";
+        });
+    };
+    </script>
+
+    <script>
+        var slider_1 = document.getElementById("myRange_1");
+        var output_1 = document.getElementById("demo_1");
+        output_1.innerHTML = slider_1.value;
+        slider_1.oninput = function()
+        {
+          output_1.innerHTML = this.value;
+        }
+        </script> 
+
+    <script>
+        
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+    
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="control.js"></script>
+</body>
+
+</html>
