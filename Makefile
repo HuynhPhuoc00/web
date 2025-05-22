@@ -9,7 +9,7 @@ run:
 	@python3 server.py & \
 	sleep 2 && \
 	echo "==> Compile C++" && \
-	$(CXX) main.cpp -o $(TARGET) $(CXXFLAGS) && \
+	$(CXX) cpp_control.cpp -o $(TARGET) $(CXXFLAGS) && \
 	./$(TARGET)
 
 clean:
