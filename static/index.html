@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IoT Light Control</title>
+    <title>Điều khiển đèn IoT</title>
 </head>
 <body>
-    <h1>Bóng đèn 01</h1>
+    <h1>Đèn phòng khách</h1>
     <label>
-        <input type="checkbox" id="example_01"> Bật đèn
+        <input type="checkbox" id="example_01"> Bật/Tắt đèn
     </label>
-    <br>
-    <img id="d01_img" src="./img/dentat.png" alt="Trạng thái đèn" width="200">
-    <script>
-    var btn1 = document.getElementById("example_01");
-    btn1.onclick = function(){
-      const isChecked = document.getElementById("example_01").checked;
-      const img = document.getElementById("d01_img");
-      const state = isChecked ? "ON" : "OFF";
-      
-      img.src = isChecked ? "./img/densang.png" : "./img/dentat.png";
+    <br><br>
+    <img id="d01_img" src="./img/dentat.png" width="200px">
 
-      fetch("http://localhost:8080/bulb", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ "BULB_01": state })
-      });
-    }
+    <script>
+    const btn1 = document.getElementById("example_01");
+    btn1.onclick = function(){
+        const isChecked = btn1.checked;
+        document.getElementById("d01_img").src = isChecked ? "./img/densang.png" : "./img/dentat.png";
+        fetch("/bulb", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "BULB_01": isChecked ? "ON" : "OFF" })
+        });
+    };
+
+    window.onload = () => {
+        fetch("/bulb")
+            .then(res => res.json())
+            .then(data => {
+                const isOn = data.BULB_01 === "ON";
+                btn1.checked = isOn;
+                document.getElementById("d01_img").src = isOn ? "./img/densang.png" : "./img/dentat.png";
+            });
+    };
     </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
-import control 
+
+import control
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
@@ -17,14 +18,11 @@ def bulb():
         data = request.get_json()
         if data and "BULB_01" in data:
             led_state["BULB_01"] = data["BULB_01"]
-            
             control.update_led_state(led_state["BULB_01"])
-
-            return jsonify({"status": "ok", "LED": led_state["BULB_01"]})
+            return jsonify({"status": "ok", "BULB_01": led_state["BULB_01"]})
         else:
             return jsonify({"error": "Missing BULB_01 key"}), 400
-
-    elif request.method == "GET":
+    else:
         return jsonify(led_state)
 
 if __name__ == "__main__":
