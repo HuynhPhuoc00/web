@@ -96,30 +96,30 @@
     };
     </script>
 
-    <!-- DOOR_01 -->  
+    <!-- LOCK_01 -->  
     <label>
-        <input type="checkbox" id="DOOR_01"> On/Off Door
+        <input type="checkbox" id="LOCK_01"> On/Off Door
     </label>
     <br><br>
-    <img id="DOOR_01_img" src="./img/lock.png" width="200px">
+    <img id="LOCK_01_img" src="./img/lock.png" width="200px">
     <script>      
-    const btn_DOOR_01 = document.getElementById("DOOR_01");
-    btn_DOOR_01.onclick = function(){
-        const isChecked = btn_DOOR_01.checked;
-        document.getElementById("DOOR_01_img").src = isChecked ? "./img/unlocked.png" : "./img/lock.png";
-        fetch("/device/DOOR_01", {
+    const btn_LOCK_01 = document.getElementById("LOCK_01");
+    btn_LOCK_01.onclick = function(){
+        const isChecked = btn_LOCK_01.checked;
+        document.getElementById("LOCK_01_img").src = isChecked ? "./img/unlocked.png" : "./img/lock.png";
+        fetch("/device/LOCK_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "DOOR_01": isChecked ? "ON" : "OFF" }) 
+            body: JSON.stringify({ "LOCK_01": isChecked ? "ON" : "OFF" }) 
         });
     };
     window.onload = () => {
-      fetch("/device/DOOR_01")
+      fetch("/device/LOCK_01")
         .then(res => res.json())
         .then(data => {
-            const isOn = data.DOOR_01 === "ON";
+            const isOn = data.LOCK_01 === "ON";
             btn1.checked = isOn;
-            document.getElementById("DOOR_01_img").src = isOn ? "./img/unlocked.png" : "./img/lock.png";
+            document.getElementById("LOCK_01_img").src = isOn ? "./img/unlocked.png" : "./img/lock.png";
         });
     };
     </script>
