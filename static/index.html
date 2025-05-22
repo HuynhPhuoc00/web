@@ -20,7 +20,7 @@
       
       img.src = isChecked ? "./img/densang.png" : "./img/dentat.png";
 
-      fetch("http://localhost:5000/bulb", {
+      fetch("http://localhost:8080/bulb", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ "BULB_01": state })
