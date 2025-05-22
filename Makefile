@@ -1,15 +1,5 @@
-PYTHON_VERSION = $(shell python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-PYBIND11_INCLUDE = $(shell python3 -m pybind11 --includes)
-EXT_SUFFIX = $(shell python3-config --extension-suffix)
-
 all:
-	c++ -O3 -Wall -shared -std=c++11 -fPIC $(PYBIND11_INCLUDE) \
-	module.cpp -o module$(EXT_SUFFIX)
-
-server:
-	python3 -m http.server 8080
+	g++ cpp_control.cpp -o cpp_control
 
 clean:
-	rm -f module*.so
-	# Remove any versioned shared object files
-	rm -f module*.so.*
+	rm -f cpp_control
