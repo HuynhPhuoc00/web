@@ -23,7 +23,7 @@
         fetch("/device/BULB_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "BULB_01": "ON" }) 
+            body: JSON.stringify({ "BULB_01": isChecked ? "ON" : "OFF" }) 
         });
     };
 
@@ -53,7 +53,7 @@
         fetch("/device/FAN_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "FAN_01": "ON" }) 
+            body: JSON.stringify({ "FAN_01": isChecked ? "ON" : "OFF" }) 
         });
       };
 
@@ -82,7 +82,7 @@
         fetch("/device/TV_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "TV_01": "ON" }) 
+            body: JSON.stringify({ "TV_01": isChecked ? "ON" : "OFF" }) 
         });
     };
     window.onload = () => {
@@ -110,7 +110,7 @@
         fetch("/device/DOOR_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "DOOR_01": "ON" }) 
+            body: JSON.stringify({ "DOOR_01": isChecked ? "ON" : "OFF" }) 
         });
     };
     window.onload = () => {
@@ -138,7 +138,7 @@
         fetch("/device/AIR_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "AIR_01": "ON" }) 
+            body: JSON.stringify({ "AIR_01": isChecked ? "ON" : "OFF"}) 
         });
     };
     window.onload = () => {
@@ -166,7 +166,7 @@
         fetch("/device/SPEAKER_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "SPEAKER_01": "ON" }) // 
+            body: JSON.stringify({ "SPEAKER_01": isChecked ? "ON" : "OFF" }) 
         });
     };
     window.onload = () => {
