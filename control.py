@@ -1,4 +1,3 @@
 # control.py
-
-def update_led_state(state):
-    print(f"[control.py] Đã nhận trạng thái LED: {state}")
+def update_device_state(device, state):
+    print(f"[control.py] Device {device} change state: {state}")

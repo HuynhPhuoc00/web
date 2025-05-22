@@ -10,7 +10,7 @@
 
     <!-- BULB_01 -->
     <label>
-        <input type="checkbox" id="BULB_01"> Bật/Tắt đèn
+        <input type="checkbox" id="BULB_01"> On/Off Light
     </label>
     <br><br>
     <img id="BULB_01_img" src="./img/dentat.png" width="200px">
@@ -20,27 +20,27 @@
     btn_BULB_01.onclick = function(){
         const isChecked = btn_BULB_01.checked;
         document.getElementById("BULB_01_img").src = isChecked ? "./img/densang.png" : "./img/dentat.png";
-        fetch("/bulb", {
+        fetch("/device/BULB_01", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({ "BULB_01": isChecked ? "ON" : "OFF" })
+            body: JSON.stringify({ "BULB_01": "ON" }) 
         });
     };
 
     window.onload = () => {
-        fetch("/bulb")
-            .then(res => res.json())
-            .then(data => {
-                const isOn = data.BULB_01 === "ON";
-                btn1.checked = isOn;
-                document.getElementById("BULB_01_img").src = isOn ? "./img/densang.png" : "./img/dentat.png";
-            });
+      fetch("/device/BULB_01")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.BULB_01 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("BULB_01_img").src = isOn ? "./img/densang.png" : "./img/dentat.png";
+        });
     };
     </script>
 
       <!-- FAN_01 -->
       <label>
-          <input type="checkbox" id="FAN_01"> Bật/Tắt đèn
+          <input type="checkbox" id="FAN_01"> On/Off Fan
       </label>
       <br><br>
       <img id="FAN_01_img" src="./img/quatdungim.png" width="200px">
@@ -48,24 +48,137 @@
       <script>
       const btn_FAN_01 = document.getElementById("FAN_01");
       btn_FAN_01.onclick = function(){
-          const isChecked = btn_FAN_01.checked;
-          document.getElementById("FAN_01_img").src = isChecked ? "./img/quatchay.png" : "./img/quatdungim.png";
-          fetch("/bulb", {
-              method: "POST",
-              headers: {"Content-Type": "application/json"},
-              body: JSON.stringify({ "FAN_01": isChecked ? "ON" : "OFF" })
-          });
+        const isChecked = btn_BFAN_01.checked;
+        document.getElementById("FAN_01_img").src = isChecked ? "./img/quatchay.png" : "./img/quatdungim.png";
+        fetch("/device/FAN_01", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "FAN_01": "ON" }) 
+        });
       };
-  
+
       window.onload = () => {
-          fetch("/bulb")
-              .then(res => res.json())
-              .then(data => {
-                  const isOn = data.FAN_01 === "ON";
-                  btn1.checked = isOn;
-                  document.getElementById("FAN_01_img").src = isOn ? "./img/quatchay.png" : "./img/quatdungim.png";
-              });
+        fetch("/device/FAN_01")
+          .then(res => res.json())
+          .then(data => {
+              const isOn = data.FAN_01 === "ON";
+              btn1.checked = isOn;
+              document.getElementById("FAN_01img").src = isOn ? "./img/quatchay.png" : "./img/quatdungim.png";
+        });
       };
     </script>
+
+    <!-- TV_01 -->
+    <label>
+        <input type="checkbox" id="TV_01"> On/Off TV
+    </label>  
+    <br><br>
+    <img id="TV_01_img" src="./img/tivioff.png" width="200px">
+    <script>
+    const btn_TV_01 = document.getElementById("TV_01"); 
+    btn_TV_01.onclick = function(){
+        const isChecked = btn_TV_01.checked;
+        document.getElementById("TV_01_img").src = isChecked ? "./img/tivion.png" : "./img/tivioff.png";
+        fetch("/device/TV_01", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "TV_01": "ON" }) 
+        });
+    };
+    window.onload = () => {
+      fetch("/device/TV_01")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.TV_01 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("TV_01_img").src = isOn ? "./img/tivion.png" : "./img/tivioff.png";
+        });
+    };
+    </script>
+
+    <!-- DOOR_01 -->  
+    <label>
+        <input type="checkbox" id="DOOR_01"> On/Off Door
+    </label>
+    <br><br>
+    <img id="DOOR_01_img" src="./img/lock.png" width="200px">
+    <script>      
+    const btn_DOOR_01 = document.getElementById("DOOR_01");
+    btn_DOOR_01.onclick = function(){
+        const isChecked = btn_DOOR_01.checked;
+        document.getElementById("DOOR_01_img").src = isChecked ? "./img/lockopen.png" : "./img/lock.png";
+        fetch("/device/DOOR_01", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "DOOR_01": "ON" }) 
+        });
+    };
+    window.onload = () => {
+      fetch("/device/DOOR_01")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.DOOR_01 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("DOOR_01_img").src = isOn ? "./img/lockopen.png" : "./img/lock.png";
+        });
+    };
+    </script>
+
+    <!-- AIR_01 -->
+    <label>
+        <input type="checkbox" id="AIR_01"> On/Off Air Conditioner
+    </label>      
+    <br><br>
+    <img id="AIR_01_img" src="./img/airstop.png" width="200px">
+    <script>
+    const btn_AIR_01 = document.getElementById("AIR_01");
+    btn_AIR_01.onclick = function(){
+        const isChecked = btn_AIR_01.checked;
+        document.getElementById("AIR_01_img").src = isChecked ? "./img/airon.png" : "./img/airstop.png";
+        fetch("/device/AIR_01", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "AIR_01": "ON" }) 
+        });
+    };
+    window.onload = () => {
+      fetch("/device/AIR_01")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.AIR_01 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("AIR_01_img").src = isOn ? "./img/airon.png" : "./img/airstop.png";
+        });
+    };
+    </script>
+
+    <!-- SPEAKER_01 -->
+    <label>
+        <input type="checkbox" id="SPEAKER_01"> On/Off Speaker
+    </label>
+    <br><br>
+    <img id="SPEAKER_01_img" src="./img/speakers.png" width="200px">
+    <script>
+    const btn_SPEAKER_01 = document.getElementById("SPEAKER_01");
+    btn_SPEAKER_01.onclick = function(){
+        const isChecked = btn_SPEAKER_01.checked;
+        document.getElementById("SPEAKER_01_img").src = isChecked ? "./img/speakeron.png" : "./img/speakers.png";
+        fetch("/device/SPEAKER_01", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ "SPEAKER_01": "ON" }) // 
+        });
+    };
+    window.onload = () => {
+      fetch("/device/SPEAKER_01")
+        .then(res => res.json())
+        .then(data => {
+            const isOn = data.SPEAKER_01 === "ON";
+            btn1.checked = isOn;
+            document.getElementById("SPEAKER_01_img").src = isOn ? "./img/speakeron.png" : "./img/speakers.png";
+        });
+    };
+    </script>
+    <!-- END LIVING ROOM -->
 </body>
 </html>
