@@ -35,6 +35,7 @@ def root():
     return app.send_static_file("index.html")
 
 @app.route("/device/<device_id>", methods=["GET", "POST"])
+
 def control_device(device_id):
     device_id = device_id.upper()
 
@@ -52,4 +53,4 @@ def control_device(device_id):
         return jsonify({device_id: device_states[device_id]})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8080, debug=True)
