@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__, static_url_path='', static_folder='static')
 
-# Trạng thái tất cả thiết bị
+# Status device
 device_states = {
     # For living room
     "BULB_01"   : "OFF",
@@ -54,3 +54,19 @@ def control_device(device_id):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
+
+@app.route("/api/app/device/<device_id>", methods=["POST"])
+def control_device_app(device_id):
+    device_id = device_id.upper()
+    if device_id not in device_states:
+        return jsonify({"error": "Unknown device"}), 404
+
+    data = request.get_json()
+    if device_id in data:
+        device_states[device_id] = data[device_id]
+        return jsonify({
+            "from": "android-app",
+            "device": device_id,
+            "state": device_states[device_id]
+        })
+    return jsonify({"error": f"Missing {device_id} key"}), 400
