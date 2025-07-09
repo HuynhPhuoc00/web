@@ -29,13 +29,12 @@ device_states = {
     "FRIDGE_03" : "OFF",
 }
 
-
 @app.route("/")
 def root():
     return app.send_static_file("index.html")
 
+# For Web
 @app.route("/device/<device_id>", methods=["GET", "POST"])
-
 def control_device(device_id):
     device_id = device_id.upper()
 
@@ -52,9 +51,7 @@ def control_device(device_id):
     else:
         return jsonify({device_id: device_states[device_id]})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
-
+# For Mobile
 @app.route("/api/app/device/<device_id>", methods=["POST"])
 def control_device_app(device_id):
     device_id = device_id.upper()
@@ -70,3 +67,6 @@ def control_device_app(device_id):
             "state": device_states[device_id]
         })
     return jsonify({"error": f"Missing {device_id} key"}), 400
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8080, debug=True)
