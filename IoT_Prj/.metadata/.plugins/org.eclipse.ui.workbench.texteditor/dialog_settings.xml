@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="searchhistory">
+		<item value="lcd_clear"/>
+		<item value="lcd_put_cur"/>
+		<item value="send_string_lcd"/>
+		<item value="send_data_lcd"/>
+		<item value="send_cmd_lcd"/>
+		<item value="lcd_init"/>
+		<item value="HAL_Delay"/>
+		<item value="GPIO_WriteToOutPutPin"/>
+		<item value="#include &quot;74HC595.h&quot;"/>
+		<item value="Pin_74H595_0"/>
+		<item value="TRISE"/>
+		<item value="RCC_GetPCLK1Value"/>
+		<item value="RCC_GetPCLK1Value\"/>
+	</list>
+</section>
