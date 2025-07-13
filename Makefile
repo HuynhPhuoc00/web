@@ -5,7 +5,7 @@ TARGET = main
 all: firmware-build run
 
 firmware-build:
-	make -C /home/phuoc/Doc/web/IoT_Prj/PRJ_001/Debug all
+	make -C /home/phuoc/Documents/web/IoT_Prj/PRJ_001/Debug all
 
 run:
 	@echo "==> Start Flask server"
@@ -17,4 +17,4 @@ run:
 
 clean:
 	rm -f $(TARGET)
-	make -C /home/phuoc/Doc/web/IoT_Prj/PRJ_001/Debug clean
+	make -C /home/phuoc/Documents/web/IoT_Prj/PRJ_001/Debug clean

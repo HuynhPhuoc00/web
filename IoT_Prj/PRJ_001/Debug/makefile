@@ -78,19 +78,21 @@ PRJ_001.list \
 OBJCOPY_HEX += \
 PRJ_001.hex \
 
-PRJ_PATH = /mnt/c/Users/Administrator/Documents/IoT_Prj/PRJ_001/
+PRJ_PATH = /home/phuoc/Documents/web/IoT_Prj/PRJ_001/
+
+TARGET = PRJ_001
 
 # All Target
-all: main-build
+all: main-build flash
 
 flash:
-	st-flash write $(BUILD_DIR)/$(TARGET).bin 0x8000000
+	st-flash write $(TARGET).bin 0x8000000
 
 cleanflash:
 	st-flash erase
 
 # Main-build Target
-main-build: PRJ_001.elf secondary-outputs
+main-build: $(TARGET).elf $(TARGET).bin secondary-outputs
 
 # Tool invocations
 PRJ_001.elf PRJ_001.map: $(OBJS) $(USER_OBJS) $(PRJ_PATH)STM32F401VEHX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
@@ -113,10 +115,14 @@ PRJ_001.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+PRJ_001.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy -O binary -S $(EXECUTABLES) "PRJ_001.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
 
 # Other Targets
-clean:
-	-$(RM) PRJ_001.elf PRJ_001.hex PRJ_001.list PRJ_001.map default.size.stdout
+clean: cleanflash
+	-$(RM) PRJ_001.elf PRJ_001.hex PRJ_001.bin PRJ_001.list PRJ_001.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
